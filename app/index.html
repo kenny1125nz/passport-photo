@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Free Passport Photo Maker — 100% Free, No Sign-Up</title>
+  <meta name="description" content="Create compliant passport photos for free. No sign-up, no watermark, no hidden fees. Auto-crop, auto-rotate, background removal — all in your browser.">
+  <meta name="keywords" content="free passport photo maker, passport photo online free, passport photo cropper, passport photo editor, background remover, no sign up">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://passport-photo.app/">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:title" content="Free Passport Photo Maker — No Sign-Up Required">
+  <meta property="og:description" content="Create compliant passport photos for free. Auto-crop, auto-rotate, background removal. 100% free, no account needed.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://passport-photo.app/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Passport Photo Maker">
+  <meta name="twitter:description" content="Create compliant passport photos for free. No sign-up, no watermark, no hidden fees.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Passport Photo Maker",
+    "description": "Free online passport photo maker. Auto-crop, auto-rotate, background removal. No sign-up required.",
+    "applicationCategory": "Multimedia",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": "Auto-crop to passport size, auto-rotate to level eyes, background removal, adjustable threshold",
+    "browserRequirements": "Requires JavaScript"
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>Free <span>Passport Photo</span> Maker · 100% Free</header>
+
+  <div class="container">
+    <div class="country-picker">
+      <span class="cp-label">Country</span>
+      <select id="country-select"></select>
+    </div>
+    <!-- Upload -->
+    <div id="upload-section">
+      <div id="upload-zone">
+        <div class="icon">📷</div>
+        <div class="text">
+          <strong>Click to upload</strong> or drag &amp; drop<br>a portrait photo
+        </div>
+        <div class="hint">JPG, PNG — max 20MB · 100% free, no sign-up</div>
+      </div>
+      <input type="file" id="file-input" accept="image/*">
+      <div class="upload-buttons">
+        <button class="btn-primary" id="camera-btn">📸 Take Photo</button>
+      </div>
+    </div>
+
+    <!-- Editor -->
+    <div id="editor-section">
+      <div class="viewport-container">
+        <div class="aspect-ratio-box">
+          <canvas id="display-canvas"></canvas>
+          <canvas id="guide-canvas"></canvas>
+          <div class="hud" id="hud">Drag to move · Scroll to zoom</div>
+        </div>
+      </div>
+      <div class="editor-controls">
+        <button class="zoom-btn" id="zoom-out-btn">−</button>
+        <span class="zoom-label" id="zoom-label">100%</span>
+        <button class="zoom-btn" id="zoom-in-btn">+</button>
+        <button class="btn-reset" id="reset-btn">↺ Reset</button>
+        <button class="btn-crop" id="crop-btn">✂ Confirm &amp; Crop</button>
+        <button class="btn-reset" id="reselect-btn">📷 Retake</button>
+      </div>
+      <div class="rotate-control">
+        <span class="rlabel">Rotate</span>
+        <input type="range" class="rotate-slider" id="rotate-slider" min="-15" max="15" value="0" step="0.1">
+        <span class="rotate-value" id="rotate-value">0.0°</span>
+        <button class="rotate-reset" id="rotate-reset">↺ 0</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result-section">
+      <div class="result-card">
+        <div class="result-label">Cropped Passport Photo</div>
+        <canvas id="result-canvas"></canvas>
+        <div class="result-info" id="result-info"></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-back" id="back-btn">← Adjust</button>
+        <button class="btn-download" id="download-btn">⬇ Download</button>
+      </div>
+      <div class="bg-threshold-group" id="bg-threshold-group" style="display:none">
+        <span class="rlabel">Threshold</span>
+        <input type="range" class="rotate-slider" id="bg-threshold" min="0" max="100" value="80" step="1">
+        <span class="rotate-value" id="bg-threshold-label">8%</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <div class="label" id="loading-label">Detecting face...</div>
+      <div class="sub">Auto-rotating to level eyes</div>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+    }
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

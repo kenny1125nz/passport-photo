@@ -1,0 +1,11 @@
+# Install PyTorch with CUDA for your RTX 3060:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu118
+#
+# Then install the rest:
+#   pip install -r requirements.txt (with torch line commented)
+torch>=2.0.0
+mediapipe>=0.10.35
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+gradio>=5.0.0
