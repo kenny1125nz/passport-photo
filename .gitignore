@@ -30,3 +30,6 @@ credentials.*
 *_secret.*
 *tavily*
 # <<< credential-guard (security audit) <<<
+
+/raw.jpg
+/passport_photo_output.jpg
